@@ -1,8 +1,8 @@
 export default (state = null, action) => {
     switch (action.type) {
-        case 'JOB_VACANCY':
+        case 'CHECK_BOX':
             return action.payload
-        case 'JOB_VACANCY_ERROR':
+        case 'CHECK_BOX_ERROR':
             return action.payload
         default:
             return state
