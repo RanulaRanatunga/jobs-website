@@ -130,7 +130,7 @@ export const experienceReleventJobs = (userId, id) => async dispatch => {
 }
 
 export const isFreelancer = (userId, status) => async dispatch => {
-    await jobVacancyApi.put(`/api/test/setAsFreelancer/${userId}/?status=${status}`).then(
+    await jobVacancyApi.put(`/api/test/setAsFreelancer/${userId}/?status=${status}`, {}, { headers: authHeader() }).then(
         response => {
             dispatch({ type: 'FREELANCER', payload: { ...response.data } })
         },
@@ -164,7 +164,7 @@ export const retrieveProfileInfo = userId => async dispatch => {
 }
 
 export const retrieveAllProfiles = () => async dispatch => {
-    await jobVacancyApi.get('/api/admin/retrieveAllProfiles').then(
+    await jobVacancyApi.get('/api/admin/retrieveAllProfiles', { headers: authHeader() }).then(
         response => {
             dispatch({ type: 'ALL_PROFILES', payload: response.data })
         },
@@ -181,7 +181,7 @@ export const retrieveAllProfiles = () => async dispatch => {
 }
 
 export const setApproval = (userId, status) => async dispatch => {
-    await jobVacancyApi.put(`/api/admin/setApproval/${userId}/?status=${status}`).then(
+    await jobVacancyApi.put(`/api/admin/setApproval/${userId}/?status=${status}`, {}, { headers: authHeader() }).then(
         response => {
             dispatch({ type: 'APPROVAL_STATUS', payload: { ...response.data } })
         },

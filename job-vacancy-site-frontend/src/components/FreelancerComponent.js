@@ -25,21 +25,31 @@ class Freelancer extends React.Component {
     render() {
         // console.log(this.props.currentUser)
         return (
-            <div>
-                <label>Are you a Freelancer?</label>
-                <div>
-                    <div>
-                        <input type="radio" name="response" value={true} onChange={this.handleChange} />
-                        <label>Yes</label>
+            <div className="ui container" style={{ marginTop: '20px' }}>
+                <div className="ui icon message">
+                    <i className="inbox icon"></i>
+                    <div className="content">
+                        <div className="header">
+                            <label>Are you a Freelancer?</label>
+                        </div>
+                        <div style={{marginTop: '10px'}}>
+                            <div style={{padding:'3px'}}>
+                                <input type="radio" name="response" value={true} onChange={this.handleChange} />
+                                <label>Yes</label>
+                            </div>
+                            <div style={{padding: '3px'}}>
+                                <input type="radio" name="response" value={false} onChange={this.handleChange} />
+                                <label>No</label>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <div>
-                    <div>
-                        <input type="radio" name="response" value={false} onChange={this.handleChange} />
-                        <label>No</label>
-                    </div>
+                <div className="ui center aligned container">
+                    <Link to="/responseVacancy" className="ui right labeled icon button">
+                        <i className="right arrow icon"></i>
+                        {this.state.btn ? 'Next' : 'Skip'}
+                    </Link>
                 </div>
-                <Link to="/responseVacancy">{this.state.btn ? 'Next' : 'Skip'}</Link>
             </div>
         )
     }

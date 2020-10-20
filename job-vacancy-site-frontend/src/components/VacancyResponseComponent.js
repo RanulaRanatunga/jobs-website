@@ -16,14 +16,29 @@ class VacancyResponse extends React.Component {
 
     render() {
         console.log(this.props.profileInfo)
-        return (
-            <div>
-                <h4>Hi!!! {this.props.profileInfo && this.props.profileInfo.fullName}</h4>
-                {this.props.profileInfo &&
-                    this.props.profileInfo.approvedStatus === false ? <p>We have recieved your information. Please wait for approval!</p> : <p>Approved!</p>
-                }
-            </div>
-        )
+        if (this.props.currentUser) {
+            return (
+                <div>
+                    <div className="ui icon message">
+                        {this.props.profileInfo &&
+                            this.props.profileInfo.approvedStatus === false ? <i class="notched circle loading icon"></i> : <div></div>
+                        }
+                        <div className="content">
+                            <div className="header">
+                                Hi!!! {this.props.profileInfo && this.props.profileInfo.fullName}
+                            </div>
+                            {this.props.currentUser && this.props.profileInfo &&
+                                this.props.profileInfo.approvedStatus === true ? <p>Approved!</p> : <p>We have recieved your information. Please wait for approval!</p>
+                            }
+                        </div>
+                    </div>
+                </div>
+            )
+        } else {
+            return (
+                <div className="ui red message">Invalid user login. please login again!</div>
+            )
+        }
     }
 }
 

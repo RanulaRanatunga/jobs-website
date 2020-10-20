@@ -12,6 +12,7 @@ import Freelancer from './components/FreelancerComponent';
 import VacancyResponse from './components/VacancyResponseComponent';
 import ModeratorPanel from './components/ModeratorPanelComponent';
 import ShowProfileInfo from './components/ShowProfileInfoComponent';
+import Chart from './components/ChartComponent';
 
 const App = () => {
   return (
@@ -27,6 +28,7 @@ const App = () => {
         <Route path={"/responseVacancy"} exact component={VacancyResponse} />
         <Route path={"/allProfiles"} exact component={ModeratorPanel} />
         <Route path={"/profileInfo/:id"} component={ShowProfileInfo} />
+        <Route path={"/chart"} component={Chart} />
       </Router>
     </div>
   );

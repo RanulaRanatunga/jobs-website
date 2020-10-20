@@ -1,5 +1,7 @@
 package com.insharp.jobvacancy.Job.Vacancy.Site.models;
 
+import java.util.Date;
+
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 
@@ -34,6 +36,8 @@ public class ProfileInfo {
 	private Boolean isFreelancer;
 	@NotBlank
 	private Boolean approvedStatus;
+	private Date date;
+	private Boolean jobsInterestedInStatus;
 
 	public ProfileInfo(String userId, String fullName, String middleName, String lastName, String address, String city,
 			String province, String email, String phoneNum, Boolean isFreelancer, Boolean approvedStatus) {
@@ -144,6 +148,22 @@ public class ProfileInfo {
 
 	public void setApprovedStatus(Boolean approvedStatus) {
 		this.approvedStatus = approvedStatus;
+	}
+
+	public Date getDate() {
+		return date;
+	}
+
+	public void setDate(Date date) {
+		this.date = date;
+	}
+
+	public Boolean getJobsInterestedInStatus() {
+		return jobsInterestedInStatus;
+	}
+
+	public void setJobsInterestedInStatus(Boolean jobsInterestedInStatus) {
+		this.jobsInterestedInStatus = jobsInterestedInStatus;
 	}
 
 }

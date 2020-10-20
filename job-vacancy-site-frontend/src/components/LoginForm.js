@@ -4,7 +4,7 @@ import { Field, reduxForm } from 'redux-form';
 class LoginForm extends React.Component {
     renderInput = ({ input, label }) => {
         return (
-            <div>
+            <div className="field">
                 <label>{label}</label>
                 <input {...input} autoComplete="off" />
             </div>
@@ -17,10 +17,10 @@ class LoginForm extends React.Component {
 
     render() {
         return (
-            <form onSubmit={this.props.handleSubmit(this.onSubmit)}>
+            <form onSubmit={this.props.handleSubmit(this.onSubmit)} className="ui form">
                 <Field name="username" component={this.renderInput} label="Enter Username" />
                 <Field name="password" component={this.renderInput} label="Enter Password" />
-                <button>Submit</button>
+                <button className="ui primary button">Submit</button>
             </form>
         );
     }

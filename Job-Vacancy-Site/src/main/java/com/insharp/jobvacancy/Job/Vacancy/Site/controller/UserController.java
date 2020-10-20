@@ -1,5 +1,6 @@
 package com.insharp.jobvacancy.Job.Vacancy.Site.controller;
 
+import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
@@ -51,6 +52,9 @@ public class UserController {
 	@PreAuthorize("hasRole('USER')")
 	public ResponseEntity<?> saveProfileInfo(@Valid @RequestBody ProfileInfo profileInfo) {
 		profileInfo.setApprovedStatus(false);
+		profileInfo.setDate(new Date());
+		profileInfo.setIsFreelancer(false);
+		profileInfo.setJobsInterestedInStatus(false);
 		profileInfoRepository.save(profileInfo);
 		return ResponseEntity.ok(new MessageResponse("Added Profile Information Successfully!"));
 	}
@@ -59,7 +63,10 @@ public class UserController {
 	@PreAuthorize("hasRole('USER')")
 	public ResponseEntity<?> addJobsInteresetedIn(@Valid @RequestBody JobsInterestedIn jobs) {
 		jobs.getJobs().forEach(job -> job.setId(UUID.randomUUID()));
+		jobs.setDate(new Date());
 		jobsInterestedInRepository.save(jobs);
+		ProfileInfo profileInfo = profileInfoRepository.findByUserId(jobs.getUserId()).get();
+		profileInfo.setJobsInterestedInStatus(true);
 		return ResponseEntity.ok(new MessageResponse("Added Jobs Interested In!"));
 	}
 	
@@ -84,15 +91,17 @@ public class UserController {
 			}
 		});
 //		jobsInterestedIn.getJobs().forEach(job -> System.out.println(job.getExperience()));
+		jobsInterestedIn.setDate(new Date());
 		jobsInterestedInRepository.save(jobsInterestedIn);
 		return ResponseEntity.ok(new MessageResponse("Successfully update the status of experience"));
 	}
 	
 	@PutMapping("/setAsFreelancer/{id}")
-//	@PreAuthorize("hasRole('USER')")
+	@PreAuthorize("hasRole('USER')")
 	public ResponseEntity<?> isFreelancer(@PathVariable("id") String id, @RequestParam("status") Boolean statusFreelancer) {
 		ProfileInfo profileInfo = profileInfoRepository.findByUserId(id).get();
 		profileInfo.setIsFreelancer(statusFreelancer);
+		profileInfo.setDate(new Date());
 		profileInfoRepository.save(profileInfo);
 		return ResponseEntity.ok("Successfully updated the status of freelancer");
 	}

@@ -35,8 +35,11 @@ class AddJobsInterestedIn extends React.Component {
 
     render() {
         return (
-            <div>
-                <JobsInterestedInForm onSubmit={this.onSubmit} />
+            <div className="ui container" style={{marginTop: '20px'}}>
+                <h1 className="ui center aligned header">Add jobs that you interested</h1>
+                <div style={{marginTop: '30px'}}>
+                    <JobsInterestedInForm onSubmit={this.onSubmit} />
+                </div>
             </div>
         )
     }

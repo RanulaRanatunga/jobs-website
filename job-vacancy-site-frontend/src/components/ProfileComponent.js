@@ -29,14 +29,19 @@ class Profile extends React.Component {
     render() {
         return (
             <div>
-                <div>
-                    <h3>User Profile</h3>
+                <div className="ui container" style={{ marginTop: '20px' }}>
+                    <h1 className="ui center aligned header">User Profile</h1>
                     {
                         this.props.profile && Object.keys(this.props.profile).length ?
-                            <div>
-                                <p>You have alredy added profile Information. Please click Next!</p>
-                                <Link to={this.props.allJobs && Object.keys(this.props.allJobs).length ? '/retriveAllInterestedJobs' : '/addJobsInterestedIn'}>Next</Link>
-                            </div> : <ProfileForm onSubmit={this.onSubmit} />
+
+                            <div className="ui message">
+                                <div className="header">
+                                    You have alredy added profile Information.
+                            </div>
+                                <p> Please click {<Link to={this.props.allJobs && Object.keys(this.props.allJobs).length ? '/retriveAllInterestedJobs' : '/addJobsInterestedIn'}>Next</Link>}!</p>
+                                
+                            </div>
+                            : <ProfileForm onSubmit={this.onSubmit} />
                     }
                     {this.props.response === 'Error: Unauthorized' ? <div>Unauthorized User!</div> : <div></div>}
                 </div>

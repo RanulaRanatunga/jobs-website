@@ -1,5 +1,6 @@
 package com.insharp.jobvacancy.Job.Vacancy.Site.models;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.data.annotation.Id;
@@ -14,6 +15,7 @@ public class JobsInterestedIn {
 	private String id;
 	private String userId;
 	private List<Jobs> jobs;
+	private Date date;
 
 	public JobsInterestedIn(String userId, List<Jobs> jobs) {
 		this.userId = userId;
@@ -43,4 +45,13 @@ public class JobsInterestedIn {
 	public void setJobs(List<Jobs> jobs) {
 		this.jobs = jobs;
 	}
+
+	public Date getDate() {
+		return date;
+	}
+
+	public void setDate(Date date) {
+		this.date = date;
+	}
+
 }

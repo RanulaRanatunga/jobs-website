@@ -25,12 +25,20 @@ class LoginComponent extends React.Component {
     render() {
         console.log(this.props.isSignIn)
         return (
-            <div>
-                <h3>Login</h3>
+            <div className="ui container" style={{marginTop: '20px'}}>
+                <h2 className="ui center aligned icon header">
+                    <i className="circular users icon"></i>
+                    Login
+                </h2>
+                <div className="ui segment">
                 <LoginForm onSubmit={this.onSubmit} />
+                </div>
                 <br />
                 {this.props.isSignIn && this.isAuthenticated(this.props.isSignIn)}
-                <Link to="/signup">Sign Up</Link>
+                <Link className="ui red right labeled icon button" to="/signup">
+                    <i className="right arrow icon"></i>
+                    Sign Up
+                </Link>
             </div>
         );
     }

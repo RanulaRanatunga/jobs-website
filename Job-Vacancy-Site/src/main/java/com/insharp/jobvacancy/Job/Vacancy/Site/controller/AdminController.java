@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -37,6 +38,7 @@ public class AdminController {
 	ProfileInfoRepository profileInfoRepository;
 
 	@PostMapping("/addJobs")
+	@PreAuthorize("hasRole('ADMIN')")
 	public ResponseEntity<?> addOpenningJobs(@RequestBody OpenningJobs openningJobs) {
 		openningJobsRepository.save(openningJobs);
 		return ResponseEntity.ok(new MessageResponse("Successfully Added!"));
@@ -44,18 +46,21 @@ public class AdminController {
 	
 //	This is use for retrieve relevant ids of jobs
 	@GetMapping("/allJobs")
+	@PreAuthorize("hasRole('MODERATOR')")
 	public ResponseEntity<?> getAlljobs() {
 		List<JobsInterestedIn> all = jobsInterestedInRepository.findAll();
 		return ResponseEntity.ok(all);
 	}
 	
 	@GetMapping("/retrieveAllProfiles")
+	@PreAuthorize("hasRole('MODERATOR')")
 	public ResponseEntity<?> retrieveAllUsers() {
 		List<ProfileInfo> profiles = profileInfoRepository.findAll();
 		return ResponseEntity.ok(profiles);
 	}
 	
 	@PutMapping("/setApproval/{userId}")
+	@PreAuthorize("hasRole('MODERATOR')")
 	public ResponseEntity<?> setApproval(@PathVariable("userId") String userId, @RequestParam("status") Boolean approvedStatus) {
 		ProfileInfo profileInfo = profileInfoRepository.findByUserId(userId).get();
 		profileInfo.setApprovedStatus(approvedStatus);

@@ -5,7 +5,7 @@ class Profile extends React.Component {
 
     renderInput = ({ input, label }) => {
         return (
-            <div>
+            <div className="field">
                 <label>{label}</label>
                 <input {...input} autoComplete="off" />
             </div>
@@ -18,16 +18,36 @@ class Profile extends React.Component {
 
     render() {
         return (
-            <form onSubmit={this.props.handleSubmit(this.onSubmit)} >
-                <Field name="fullName" component={this.renderInput} label="Enter Full Name" />
-                <Field name="middleName" component={this.renderInput} label="Enter Middle Name" />
-                <Field name="lastName" component={this.renderInput} label="Enter Last Name" />
+            <form onSubmit={this.props.handleSubmit(this.onSubmit)} className="ui form" >
+                <div className="field">
+                    <div className="three fields">
+                        <div className="field">
+                            <Field name="fullName" component={this.renderInput} label="Enter First Name" />
+                        </div>
+                        <div className="field">
+                            <Field name="middleName" component={this.renderInput} label="Enter Middle Name" />
+                        </div>
+                        <div className="field">
+                            <Field name="lastName" component={this.renderInput} label="Enter Last Name" />
+                        </div>
+                    </div>
+                </div>
                 <Field name="address" component={this.renderInput} label="Enter Address" />
-                <Field name="city" component={this.renderInput} label="Enter City" />
-                <Field name="province" component={this.renderInput} label="Enter Province" />
+                <div className="field">
+                    <div className="two fields">
+                        <div className="field">
+                            <Field name="city" component={this.renderInput} label="Enter Country" />
+                        </div>
+                        <div className="field">
+                            <Field name="province" component={this.renderInput} label="Enter Province" />
+                        </div>
+                    </div>
+                </div>
                 <Field name="email" component={this.renderInput} label="Enter Email" />
                 <Field name="phoneNum" component={this.renderInput} label="Enter Phone Number" />
-                <button>Submit</button>
+                <div className="ui center aligned container">
+                    <button className="ui primary button" >Submit</button>
+                </div>
             </form>
         )
     }

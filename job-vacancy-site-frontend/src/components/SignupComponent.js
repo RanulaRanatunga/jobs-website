@@ -16,24 +16,24 @@ class SignupComponent extends React.Component {
 
     render() {
         return (
-            <div>
+            <div className="ui container" style={{marginTop: '20px'}}>
                 {!this.isSuccessful() &&
                     <div>
-                        <h3>Sign Up</h3>
+                        <h1 className="ui center aligned header">Sign Up</h1>
                         <SignupForm onSubmit={this.onSubmit} />
                     </div>
                 }
                 {this.props.reg && this.props.reg.message && (
-                    <div>
-                        <div>
+                    <div className="ui form error">
+                        <div className="ui error message">
                             {this.props.reg.message}
                         </div>
                         <p></p>
                     </div>
                 )}
                 {this.props.reg && !this.props.reg.message && (
-                    <div>
-                        <div>
+                    <div className="ui form error">
+                        <div className="ui error message">
                             {this.props.reg.response}
                         </div>
                         <p></p>

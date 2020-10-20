@@ -1,5 +1,6 @@
 package com.insharp.jobvacancy.Job.Vacancy.Site.controller;
 
+import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -108,6 +109,7 @@ public class AuthController {
 		}
 
 		user.setRoles(roles);
+		user.setDate(new Date());
 		userRepository.save(user);
 
 		return ResponseEntity.ok(new MessageResponse("User registered successfully!"));

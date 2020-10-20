@@ -10,6 +10,9 @@ class ModeratorPanel extends React.Component {
     }
 
     renderList(profiles) {
+        if (profiles === 'Forbidden') {
+            return <div>{profiles}</div>
+        }
         return profiles.map(profile => {
             return (
                 <div key={profile.id}>

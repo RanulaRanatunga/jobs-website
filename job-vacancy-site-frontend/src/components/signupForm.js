@@ -15,7 +15,7 @@ const validUsername = validLength(20, 3)
 class SignupForm extends React.Component {
     renderInput = ({ input, label, meta: { touched, error, warning } }) => {
         return (
-            <div>
+            <div className="field">
                 <label>{label}</label>
                 <input {...input} autoComplete="off" />
                 {touched && ((error && <span style={{ color: 'red', fontWeight: 'bold' }}>{error}</span>) || (warning && <span style={{ color: 'red', fontWeight: 'bold' }}>{warning}</span>))}
@@ -29,7 +29,7 @@ class SignupForm extends React.Component {
 
     render() {
         return (
-            <form onSubmit={this.props.handleSubmit(this.onSubmit)}>
+            <form onSubmit={this.props.handleSubmit(this.onSubmit)} className="ui form">
                 <Field name="username" component={this.renderInput} label="Enter Username" validate={[required, validUsername]} />
                 <Field name="email" component={this.renderInput} label="Enter Email" validate={[required, email]} />
                 <Field name="password" component={this.renderInput} label="Enter Password" validate={[required, validPassword]} />
